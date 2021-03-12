@@ -4,7 +4,7 @@ body {
 }
 
 body {
-    background: url('https://64.media.tumblr.com/dbf87b843616c630e4afb84a516c5b94/2e4e6eac3d1562b3-8e/s2048x3072/cc2128ae9747a29bae0ebe724262fd47c479e9bb.gif') #000000 fixed center 0;
+    background: url('./background.gif') #000000 fixed center 0;
     background-size: cover;
     overflow: hidden;
     margin: 0;
@@ -16,6 +16,9 @@ body {
 
 a {
     color: inherit;
+}
+a:hover {
+    color: red;
 }
 
 a img {
