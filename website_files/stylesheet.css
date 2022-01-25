@@ -9,7 +9,14 @@ body {
 } */
 
 body {
-    background: url('./background.gif') #000000 fixed center 0;
+    /* background: url('./background.gif') #000000 fixed center 0; */
+    background: url('./background.gif') no-repeat center center fixed;
+    
+    background-position: center 0%;
+    background-size: 100%; 
+    -webkit-background-size: cover; 
+    -moz-background-size: cover; 
+    -o-background-size: cover; 
     background-size: cover;
     overflow: hidden;
     margin: 0;
