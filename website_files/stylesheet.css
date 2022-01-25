@@ -3,21 +3,19 @@
     src: url("./monaco.ttf") format("truetype");
 }
 
-html,
+/* html,
 body {
     height: 100%;
-}
+} */
 
 body {
     background: url('./background.gif') #000000 fixed center 0;
     background-size: cover;
     overflow: hidden;
     margin: 0;
-    /* font-family: Calibri, Helvetica, Arial, sans-serif; */
     font-family: "Monaco";
     color: #ffffff;
-    font-size: 12px;
-    line-height: 160%;
+    line-height: 250%;
 }
 
 a {
@@ -27,31 +25,19 @@ a:hover {
     color: red;
 }
 
-a img {
-    border: none;
-}
-
-header {
+.socials {
     position: relative;
     width: 1040px;
-    margin: 50px auto 25px auto;
-    text-align: center;
+    margin: 30px;
+    text-align: left;
 }
 
-header a {
-    text-decoration: none;
-}
-
-header img {
-    max-width: 100%;
-}
-
-header p {
-    margin: 5px 0;
-    font-size: 30px;
+.socials p {
+    margin: 0;
+    font-size: 50px;
     text-transform: uppercase;
 }
 
-.socials {
-    
+.socials a {
+    text-decoration: none;
 }
