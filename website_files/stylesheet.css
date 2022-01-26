@@ -3,46 +3,47 @@
     src: url("./monaco.ttf") format("truetype");
 }
 
-/* html,
-body {
-    height: 100%;
-} */
-
-body {
-    /* background: url('./background.gif') #000000 fixed center 0; */
-    background: url('./background.gif') no-repeat center center ;
-    background-size: cover;
-    background-attachment: fixed;
-    -webkit-background-size: cover; 
-    -moz-background-size: cover; 
-    -o-background-size: cover; 
-    overflow: hidden;
+* {
     margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    overflow: hidden; 
     font-family: "Monaco";
     color: #ffffff;
     line-height: 250%;
 }
 
+.background-container {
+    height: 100%;
+    background: url('./background.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 a {
     color: inherit;
 }
+
 a:hover {
     color: red;
 }
 
-.socials {
-    position: relative;
-    width: 1040px;
-    margin: 30px;
+.background-container span {
+    position: absolute;
+    padding: 30px;
     text-align: left;
 }
 
-.socials p {
-    margin: 0;
+.background-container span p {
     font-size: 50px;
     text-transform: uppercase;
 }
 
-.socials a {
+.background-container span a {
     text-decoration: none;
 }
