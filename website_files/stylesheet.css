@@ -25,14 +25,6 @@ html, body {
     background-attachment: fixed;
 }
 
-a {
-    color: inherit;
-}
-
-a:hover {
-    color: red;
-}
-
 .background-container span {
     position: absolute;
     padding: 30px;
@@ -45,5 +37,10 @@ a:hover {
 }
 
 .background-container span a {
+    color: inherit;
     text-decoration: none;
+}
+
+.background-container span a:hover {
+    color: red;
 }
