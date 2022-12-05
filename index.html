@@ -13,13 +13,41 @@
 
 <body>
 	<div class="background-container">
-		<span>
+		<span class="links">
 			<p><a target="_blank" href="https://www.instagram.com/tomomoyse/">Instagram</a></p>
 			<p><a target="_blank" href="https://open.spotify.com/user/6k321cm8705s1g1993098q30f?si=a8268ee7fd004395">Spotify</a></p>
 			<p><a target="_blank" href="https://steamcommunity.com/id/millionmaker">Steam</a></p>
-			<p><a target="_blank" href="https://opensea.io/lowbudgetjamesdean">NFT</a></p>
+			<p><a target="_blank" class="crypto-modal-url" onclick="javascript:open_modal();">Crypto</a></p>
+			<p><a target="_blank" href="https://opensea.io/lowbudgetjamesdean">NFTs</a></p>
 		</span>
 	</div>
+
+	<div id="crypto-modal" class="modal">
+		<span class="close">&times;</span>
+		<img class="modal-content" id="crypto-modal-image">
+		<div id="caption"></div>
+	  </div>
+	<script>
+		function open_modal() {
+			var modal = document.getElementById("crypto-modal");
+			
+			var img = document.getElementById("btc-address-image");
+			var modal_img = document.getElementById("crypto-modal-image");
+			var caption_text = document.getElementById("caption");
+
+			modal.style.display = "block";
+			modal_img.src = "./website_files/btc.jpg";
+			caption_text.innerHTML = "BTC ADDRESS";
+
+			var span = document.getElementsByClassName("close")[0];
+			
+			span.onclick = function() { 
+			  modal.style.display = "none";
+			}
+		}
+		
+		</script>
 </body>
+
 
 </html>
