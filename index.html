@@ -2,51 +2,53 @@
 <html lang="en">
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta content='width=device-width, initial-scale=1' name='viewport' />
-	<title>tomo</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content='width=device-width, initial-scale=1' name='viewport' />
+    <title>Tomo Moyse</title>
 
-	<link rel="stylesheet" type="text/css" href="./website_files/stylesheet.css">
-	<link rel="shortcut icon" href='./website_files/icon.ico'>
-	<meta name="description" content="instagram @tomomoyse">
+    <link rel="stylesheet" type="text/css" href="./stylesheet.css">
+    <!-- <link rel="shortcut icon" href='./website_files/icon.ico'> -->
+    <meta name="description" content="instagram @tomomoyse">
 </head>
 
 <body>
-	<div class="background-container">
-		<span class="links">
-			<p><a target="_blank" href="https://www.instagram.com/tomomoyse/">Instagram</a></p>
-			<p><a target="_blank" href="https://open.spotify.com/user/6k321cm8705s1g1993098q30f?si=a8268ee7fd004395">Spotify</a></p>
-			<p><a target="_blank" href="https://steamcommunity.com/id/millionmaker">Steam</a></p>
-			<p><a target="_blank" class="crypto-modal-url" onclick="javascript:open_modal();">Crypto</a></p>
-			<p><a target="_blank" href="https://opensea.io/lowbudgetjamesdean">NFTs</a></p>
-		</span>
-	</div>
+    <div class="center-panel">
+        <div class="links">
+            <a class="link" href="#">New Game</a>
+            <a class="link" href="https://www.instagram.com/tomomoyse/">Instagram</a>
+            <a class="link"
+                href="https://open.spotify.com/playlist/5jsTdpvmutQgAV2mebvAIc?si=e229b253a29e4d55">Radio</a>
+            <a class="link" href="https://steamcommunity.com/id/millionmaker/">Steam</a>
+            <a class="link" href="https://www.google.com">Exit</a>
+        </div>
+    </div>
 
-	<div id="crypto-modal" class="modal">
-		<span class="close">&times;</span>
-		<img class="modal-content" id="crypto-modal-image">
-		<div id="caption"></div>
-	  </div>
-	<script>
-		function open_modal() {
-			var modal = document.getElementById("crypto-modal");
-			
-			var img = document.getElementById("btc-address-image");
-			var modal_img = document.getElementById("crypto-modal-image");
-			var caption_text = document.getElementById("caption");
+    <div id="modal" class="modal">
+        <span class="close">&times;</span>
+        <img class="modal-content" id="modal-image">
+    </div>
 
-			modal.style.display = "block";
-			modal_img.src = "./website_files/btc.jpg";
-			caption_text.innerHTML = "BTC ADDRESS";
+    <script>
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeBtn = document.querySelector('.close');
+        const newGameLink = document.querySelector('.link');
 
-			var span = document.getElementsByClassName("close")[0];
-			
-			span.onclick = function() { 
-			  modal.style.display = "none";
-			}
-		}
-		
-		</script>
+        newGameLink.addEventListener('click', () => {
+            modal.style.display = 'block';
+            modalImage.src = './elon.webp'; // Replace with the actual path to your image
+        });
+
+        closeBtn.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+    </script>
 </body>
 
 
