@@ -3,49 +3,54 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta content='width=device-width, initial-scale=1' name='viewport' />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
     <title>Tomo Moyse</title>
 
     <link rel="stylesheet" type="text/css" href="./stylesheet.css">
-    <!-- <link rel="shortcut icon" href='./website_files/icon.ico'> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="./assets/icon.ico">
     <meta name="description" content="instagram @tomomoyse">
 </head>
 
 <body>
+    <!-- Centered panel with links -->
     <div class="center-panel">
-        <div class="links">
+        <div class="links animate__animated animate__bounceIn">
             <a class="link" href="#">New Game</a>
-            <a class="link" href="https://www.instagram.com/tomomoyse/">Instagram</a>
-            <a class="link"
+            <a class="link" target="_blank" href="https://www.instagram.com/tomomoyse/">Instagram</a>
+            <a class="link" target="_blank"
                 href="https://open.spotify.com/playlist/5jsTdpvmutQgAV2mebvAIc?si=e229b253a29e4d55">Radio</a>
-            <a class="link" href="https://steamcommunity.com/id/millionmaker/">Steam</a>
+            <a class="link" target="_blank" href="https://steamcommunity.com/id/millionmaker/">Steam</a>
             <a class="link" href="https://www.google.com">Exit</a>
         </div>
     </div>
 
+    <!-- Modal with close button -->
     <div id="modal" class="modal">
         <span class="close">&times;</span>
-        <img class="modal-content" id="modal-image">
+        <div class="modal-content-container">
+            <img class="modal-content" id="modal-image">
+        </div>
     </div>
 
     <script>
-        const modal = document.getElementById('modal');
-        const modalImage = document.getElementById('modal-image');
-        const closeBtn = document.querySelector('.close');
-        const newGameLink = document.querySelector('.link');
+        const modal = document.getElementById("modal");
+        const modalImage = document.getElementById("modal-image");
+        const closeBtn = document.querySelector(".close");
+        const newGameLink = document.querySelector(".link");
 
-        newGameLink.addEventListener('click', () => {
-            modal.style.display = 'block';
-            modalImage.src = './elon.webp'; // Replace with the actual path to your image
+        newGameLink.addEventListener("click", () => {
+            modal.style.display = "block";
+            modalImage.src = "./assets/elon.webp"; // Replace with the actual path to your image
         });
 
-        closeBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
+        closeBtn.addEventListener("click", () => {
+            modal.style.display = "none";
         });
 
-        window.addEventListener('click', (event) => {
+        window.addEventListener("click", (event) => {
             if (event.target === modal) {
-                modal.style.display = 'none';
+                modal.style.display = "none";
             }
         });
     </script>
