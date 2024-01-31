@@ -17,40 +17,205 @@
         <div class="links">
             <a class="link" href="#">New Game</a>
             <a class="link" target="_blank" href="https://www.instagram.com/tomomoyse/">Instagram</a>
-            <a class="link" target="_blank"
-                href="https://open.spotify.com/playlist/5jsTdpvmutQgAV2mebvAIc?si=e229b253a29e4d55">Radio</a>
-            <a class="link" target="_blank" href="https://steamcommunity.com/id/millionmaker/">Steam</a>
             <a class="link" href="https://www.google.com">Exit</a>
         </div>
     </div>
 
-    <!-- Modal with close button -->
-    <div id="modal" class="modal">
-        <span class="close">&times;</span>
-        <div class="modal-content-container">
-            <img class="modal-content" id="modal-image">
-        </div>
+    <div id="game-container" class="modal" style="display:none;">
+        <canvas id="gameCanvas" width="400" height="400"></canvas>
+        <div id="closeButton" class="close">X</div>
     </div>
 
     <script>
-        const modal = document.getElementById("modal");
-        const modalImage = document.getElementById("modal-image");
-        const closeBtn = document.querySelector(".close");
+        let canvas, ctx;
+        let snake, food;
+        let blockSize = 10;
+        let widthInBlocks = 40;
+        let heightInBlocks = 40;
+        let gameLoop;
+
+        function init() {
+            canvas = document.getElementById('gameCanvas');
+            ctx = canvas.getContext('2d');
+            canvas.style.display = 'block';
+            canvas.style.margin = '0 auto';
+
+            // Vertically center the game canvas
+            const gameContainer = document.getElementById('game-container');
+            gameContainer.style.display = 'flex';
+            gameContainer.style.alignItems = 'center';
+            gameContainer.style.justifyContent = 'center';
+            gameContainer.style.height = '100vh';
+
+            snake = new Snake([[6, 4], [5, 4], [4, 4]], 'right');
+            food = new Food();
+
+            document.addEventListener('keydown', keyDownHandler);
+            if (gameLoop) clearInterval(gameLoop);
+            gameLoop = setInterval(draw, 100);
+
+            document.getElementById('closeButton').addEventListener('click', closeGame);
+        }
+
+        function keyDownHandler(e) {
+            let key = e.keyCode;
+            let directions = {
+                37: 'left',
+                38: 'up',
+                39: 'right',
+                40: 'down'
+            };
+            if (directions[key]) {
+                snake.setDirection(directions[key]);
+            }
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            snake.draw();
+            food.draw();
+            snake.move();
+
+            if (snake.checkCollision()) {
+                gameOver();
+            }
+
+            if (snake.isEatingFood(food)) {
+                snake.grow();
+                food = new Food();
+            }
+        }
+
+        function gameOver() {
+            ctx.font = '30px Arial';
+            ctx.fillStyle = 'red';
+            ctx.textAlign = 'center';
+            ctx.fillText('Game Over', canvas.width / 2, canvas.height / 2);
+            clearInterval(gameLoop);
+            setTimeout(() => {
+                closeGame();
+                resetGame();
+            }, 2000); // Close game and reset after 2 seconds
+        }
+
+        function resetGame() {
+            snake = new Snake([[6, 4], [5, 4], [4, 4]], 'right');
+            food = new Food();
+            gameLoop = setInterval(draw, 100);
+        }
+
+        function closeGame() {
+            const gameContainer = document.getElementById("game-container");
+            gameContainer.style.display = "none";
+            const newGameLink = document.querySelector(".link");
+            newGameLink.style.display = "block";
+        }
+
+        class Snake {
+            constructor(body, direction) {
+                this.body = body;
+                this.direction = direction;
+                this.ateFood = false;
+            }
+
+            draw() {
+                this.body.forEach(segment => {
+                    ctx.fillStyle = 'green';
+                    ctx.fillRect(segment[0] * blockSize, segment[1] * blockSize, blockSize, blockSize);
+                });
+            }
+
+            move() {
+                let newHead = this.calculateNewHead();
+                this.body.unshift(newHead);
+                if (!this.ateFood) {
+                    this.body.pop();
+                } else {
+                    this.ateFood = false;
+                }
+            }
+
+            calculateNewHead() {
+                let head = this.body[0];
+                let newHead = head.slice();
+                switch (this.direction) {
+                    case 'up':
+                        newHead[1] -= 1;
+                        break;
+                    case 'down':
+                        newHead[1] += 1;
+                        break;
+                    case 'left':
+                        newHead[0] -= 1;
+                        break;
+                    case 'right':
+                        newHead[0] += 1;
+                        break;
+                }
+                return newHead;
+            }
+
+            setDirection(newDirection) {
+                let allowedDirections;
+                switch (this.direction) {
+                    case 'up':
+                    case 'down':
+                        allowedDirections = ['left', 'right'];
+                        break;
+                    case 'left':
+                    case 'right':
+                        allowedDirections = ['up', 'down'];
+                        break;
+                }
+                if (allowedDirections.includes(newDirection)) {
+                    this.direction = newDirection;
+                }
+            }
+
+            checkCollision() {
+                let head = this.body[0];
+                let body = this.body.slice(1);
+                let wallCollision = head[0] < 0 || head[0] >= widthInBlocks || head[1] < 0 || head[1] >= heightInBlocks;
+                let selfCollision = body.some(segment => segment[0] === head[0] && segment[1] === head[1]);
+                return wallCollision || selfCollision;
+            }
+
+            isEatingFood(food) {
+                let head = this.body[0];
+                return head[0] === food.x && head[1] === food.y;
+            }
+
+            grow() {
+                this.ateFood = true;
+            }
+        }
+
+        class Food {
+            constructor() {
+                this.x = Math.floor(Math.random() * widthInBlocks);
+                this.y = Math.floor(Math.random() * heightInBlocks);
+            }
+
+            draw() {
+                ctx.fillStyle = 'red';
+                ctx.fillRect(this.x * blockSize, this.y * blockSize, blockSize, blockSize);
+            }
+        }
+
         const newGameLink = document.querySelector(".link");
 
         newGameLink.addEventListener("click", () => {
-            modal.style.display = "block";
-            modalImage.src = "./assets/elon.webp"; // Replace with the actual path to your image
-        });
+            // Hide the link
+            newGameLink.style.display = "none";
 
-        closeBtn.addEventListener("click", () => {
-            modal.style.display = "none";
-        });
+            // Show the game container
+            const gameContainer = document.getElementById("game-container");
+            gameContainer.style.display = "flex";
+            gameContainer.style.alignItems = "center";
+            gameContainer.style.justifyContent = "center";
 
-        window.addEventListener("click", (event) => {
-            if (event.target === modal) {
-                modal.style.display = "none";
-            }
+            // Initialize the game
+            init();
         });
     </script>
 </body>

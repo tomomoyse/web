@@ -80,43 +80,43 @@ body {
 	color: #4b1c21;
 }
 
-/* Modal styles */
 .modal {
-	display: none;
 	position: fixed;
 	z-index: 1;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: 100%;
-	overflow: auto;
-	background-color: rgba(0, 0, 0, 0.7);
+	background-color: rgba(255, 255, 255, 0.9);
+	border-radius: 10px;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: fit-content; /* Set the width to fit the content (canvas) */
+	height: fit-content; /* Set the height to fit the content (canvas) */
 }
 
-.modal-content-container {
-	display: grid;
-	place-items: center; /* Center content both horizontally and vertically */
-	height: 100%;
-}
-
-.modal-content {
-	max-width: 100%;
-	max-height: 80vh;
+#gameCanvas {
+	display: block;
+	margin: 0 auto;
+	border: 1px solid #ccc;
+	background-color: #fff;
+	box-sizing: content-box; /* Ensure the border size is not included in the canvas dimensions */
 }
 
 .close {
-	color: white;
-	position: absolute;
-	/* top: 10px;
-	right: 10px; */
-	font-size: 28px;
+	color: #666;
+	font-size: 24px;
 	font-weight: bold;
-	padding: 10px;
 	cursor: pointer;
-	top: 5px; /* Adjust top position for close button */
-	right: 5px; /* Adjust right position for close button */
-	font-size: 24px; /* Decrease font size for smaller screens */
-	padding: 5px; /* Adjust padding for close button */
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.close:hover {
+	color: #4b1c21;
 }
 
 /* Media Query for Tablets (portrait and landscape) */
