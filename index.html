@@ -57,6 +57,47 @@
             document.getElementById('closeButton').addEventListener('click', closeGame);
         }
 
+
+        // Touch event handling
+        let touchStartX = 0;
+        let touchStartY = 0;
+
+        document.addEventListener('touchstart', touchStartHandler, false);
+        document.addEventListener('touchmove', touchMoveHandler, false);
+
+        function touchStartHandler(event) {
+            touchStartX = event.touches[0].clientX;
+            touchStartY = event.touches[0].clientY;
+        }
+
+        function touchMoveHandler(event) {
+            event.preventDefault(); // Prevent scrolling
+
+            let touchEndX = event.touches[0].clientX;
+            let touchEndY = event.touches[0].clientY;
+
+            let dx = touchEndX - touchStartX;
+            let dy = touchEndY - touchStartY;
+
+            if (Math.abs(dx) > Math.abs(dy)) {
+                // Horizontal swipe
+                if (dx > 0) {
+                    snake.setDirection('right');
+                } else {
+                    snake.setDirection('left');
+                }
+            } else {
+                // Vertical swipe
+                if (dy > 0) {
+                    snake.setDirection('down');
+                } else {
+                    snake.setDirection('up');
+                }
+            }
+        }
+
+        document.addEventListener('keydown', keyDownHandler);
+
         function keyDownHandler(e) {
             let key = e.keyCode;
             let directions = {
