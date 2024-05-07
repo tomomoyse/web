@@ -15,7 +15,7 @@
 body {
 	overflow: hidden;
 	font-family: "Monaco";
-	background: url("./assets/desert-background.gif");
+	background: url("./assets/background.gif");
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: cover;
@@ -32,13 +32,13 @@ body {
 }
 
 .links {
-	background: rgba(0, 0, 0, 0.1);
+	background: rgba(0, 0, 0, 0.726);
 	border-radius: 1rem;
 	color: white;
 	font-size: 2.5rem;
 	text-transform: uppercase;
 	letter-spacing: 0.1rem;
-	padding: 2.2rem;
+	padding: 2.4rem;
 	display: flex;
 	flex-direction: column; /* Stack links vertically */
 	align-items: flex-start; /* Align links to the start of the column */
@@ -77,7 +77,7 @@ body {
 }
 
 .link:hover {
-	color: #4b1c21;
+	color: #e246f0;
 }
 
 .modal {
@@ -86,7 +86,7 @@ body {
 	background-color: rgba(255, 255, 255, 0.9);
 	border-radius: 10px;
 	padding: 20px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	box-shadow: 0 0 10x rgba(0, 0, 0, 0.3);
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -116,7 +116,7 @@ body {
 }
 
 .close:hover {
-	color: #4b1c21;
+	color: #1c254b;
 }
 
 /* Media Query for Tablets (portrait and landscape) */
